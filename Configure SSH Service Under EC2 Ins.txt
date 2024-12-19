@@ -1,0 +1,34 @@
+Configure SSH Service Under EC2 Instance
+
+sudo yum update -y    # Amazon Linux / RHEL
+--------------------------------------------
+sudo yum install -y openssh-server  
+----------------------------------------------
+sudo adduser sftpuser
+---------------------------------------------
+sudo passwd sftpuser
+-----------------------------------------------
+sudo usermod -s /sbin/nologin sftpuser   # Amazon Linux / RHEL
+---------------------------------------------------------------------
+sudo mkdir -p /data/sftpuser/uploads
+-------------------------------------------------
+sudo chown root:root /data/sftpuser
+sudo chmod 755 /data/sftpuser
+sudo chown sftpuser:sftpuser /data/sftpuser/uploads
+-----------------------------------------------------
+sudo nano /etc/ssh/sshd_config
+-----------------------------------------------------
+Add the following at the end of the file:
+Match User sftpuser
+    ChrootDirectory /data/sftpuser
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
+    X11Forwarding no
+----------------------------------------------------
+sudo systemctl restart sshd
+-----------------------------------------------------
+Configure Security Group
+Open the EC2 console and edit the security group attached to your instance.
+Add a rule to allow SFTP traffic on port 22 from trusted IP ranges.
+--------------------------------------------------------------------------
+
