@@ -1,0 +1,18 @@
+Host Static Website on EC2
+
+sudo su
+yum update -y
+yum install -y httpd
+mkdir temp
+cd temp 
+wget https://www.free-css.com/assets/files/free-css-templates/download/page296/oxer.zip
+ls -lrt
+unzip oxer.zip
+cd oxer-html
+mv * /var/www/html
+cd /var/www/html
+systemctl status httpd
+systemctl enable httpd
+systemctl start httpd
+
+Enable Port 80 in security Groups.
