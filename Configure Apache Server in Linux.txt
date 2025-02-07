@@ -1,0 +1,16 @@
+Configure Apache Server in Linux:
+
+sudo apt update
+---------------------
+sudo apt install apache2
+-----------------------------------
+sudo apt install php libapache2-mod-php
+----------------------------------------
+cd /var/www/html
+-------------------------------------
+sudo chmod 777 /var/www/html/
+--------------------------------------------------
+Take sftp of server and upload the application files 
+of website to the following path /var/www/html/
+--------------------------------------------------
+
